@@ -1,0 +1,21 @@
+sevices:
+  postgres:
+    image: postgres:17
+
+    container_name: aurora-postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_USER: aurora
+      POSTGRES_PASSWORD: aurora123
+      POSTGRES_DB: aurora_bank
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
