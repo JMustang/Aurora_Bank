@@ -1,8 +1,13 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/JMustang/Aurora_Bank/internal/database"
+)
 
 func main() {
+
+	database.Connect()
 	router := gin.Default()
 
 	router.GET("/health", func(c *gin.Context){
