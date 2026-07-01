@@ -6,6 +6,8 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	"github.com/JMustang/aurora_bank/internal/models"
 )
 
 var DB *gorm.DB
@@ -16,6 +18,12 @@ func Connect() {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("erro ao conectar ao banco:", err)
+	}
+
+	err = db.AutoMigrate(&models.User{})
+
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	DB = db
